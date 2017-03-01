@@ -24,15 +24,21 @@ solr搭建流程及使用
 
 5、在mysql中建立一张表，title 
 
-6、在solrconfig.xml的  <requestHandler name="/select" class="solr.SearchHandler">之上添加
+6、在solrconfig.xml的 ``` <requestHandler name="/select" class="solr.SearchHandler"> ``` 之上添加
+
+```
 <requestHandler name="/dataimport" class="org.apache.solr.handler.dataimport.DataImportHandler">  
 　     <lst name="defaults">  
 　        <str name="config">data-config.xml</str>  
 　     </lst>  
 　</requestHandler>  
  
+ ```
+ 
  7、在conf下新建data-config.xml文件
  内容如下：
+ 
+ ```
  <?xml version="1.0" encoding="UTF-8"?>
 <dataConfig>
   <dataSource name="source1" type="JdbcDataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://127.0.0.1:3306/solr_core" user="root" password="root" batchSize="-1" />
@@ -47,6 +53,8 @@ solr搭建流程及使用
     　　　  </entity>
   　　</document>
 </dataConfig>
+
+```
 
 8、conf文件下的managed-schema配置field信息
 <field name="id" type="int" indexed="true" stored="true" required="true" multiValued="false" />
